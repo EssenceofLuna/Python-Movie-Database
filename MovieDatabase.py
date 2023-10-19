@@ -28,14 +28,17 @@ def save_movies():
     pickle.dump(movies, f)
     f.close()
 
-    print("DEBUG: movies saved")
+    #print("DEBUG: movies saved")
 
 def load_movies():
     f = open('movies', 'rb')
-    movies = pickle.load(f)
+    loadedMovies = pickle.load(f)
     f.close()
 
-    print("DEBUG: movies loaded")
+    for i in loadedMovies:
+        movies.append(i)
+
+    #print("DEBUG: movies loaded")
 
 
 def add_movie(movieNameStr=None, length=None, rating=None):
@@ -67,8 +70,8 @@ def add_movie(movieNameStr=None, length=None, rating=None):
 
 def listAllMovies():
     for item in movies:
-        print(item.name)
-    print("DEBUG: Listed movies")
+        print(item.name+" - length: "+item.length+" - rating: "+item.rating)
+    #print("DEBUG: Listed movies")
 
 load_movies()
 add_movie()
