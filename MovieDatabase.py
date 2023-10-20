@@ -11,3 +11,4 @@ add_movie("tits", 420, 0)
 add_movie("boobs", 8008, 0)
 list_movies(True, True, True)
 
+#main loop

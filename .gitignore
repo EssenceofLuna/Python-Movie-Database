@@ -1,2 +1,4 @@
 movies
 __pycache__/
+movies.json
+lucy.py

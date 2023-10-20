@@ -3,7 +3,24 @@ import json
 #TODO: put this in a better spot :3
 movies = []
 
-def add_movie(movieNameStr=None, length=None, rating=None, forceAppend=False):
+def save_movies(moviesList = movies):
+    with open('movies.json', 'w') as f:
+        json.dump(moviesList, f)
+    f.close()
+
+def load_movies(moviesList = movies):
+    #try, in case file doesn't exist, create one and then load again
+    try:
+        with open('movies.json', 'wb') as f:
+            moviesList = json.load(f)
+        f.close()
+    except:
+        save_movies()
+
+def update_movie(movieName, editName = False, editLength = False, editRating = False):
+    movieListCheck = find_movie(movieName)
+
+def add_movie(movieNameStr=None, length=None, rating=None, forceAppend=False, loadJson = True, saveJson = True):
     # Get movie name if one is not provided
     if movieNameStr == None:
         print("Enter movie name")
@@ -22,6 +39,8 @@ def add_movie(movieNameStr=None, length=None, rating=None, forceAppend=False):
         print("Enter movie rating, 0-100")
         rating = input()
 
+    if loadJson: load_movies()
+
     movieListCheck = find_movie(movieNameStr)
     if forceAppend == True or movieListCheck == None:
         #add new move to list
@@ -38,6 +57,8 @@ def add_movie(movieNameStr=None, length=None, rating=None, forceAppend=False):
             "length": length,
             "rating": rating
         }
+    
+    if saveJson: save_movies
 
 def find_movie(movieName):
     for i in range(len(movies)):
