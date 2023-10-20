@@ -27,8 +27,14 @@ def load_movies():
 
     #print("DEBUG: movies loaded")
 
+def check_for_movie(movie):
+    if :
+        return True
+    else:
+        return False
 
-def add_movie(movieNameStr=None, length=None, rating=None, load=True, save=True):
+
+def add_movie(movieNameStr=None, length=None, rating=None, update=True, load=True, save=True):
     # TODO: Verify input types
 
     # Get movie name if one is not provided
@@ -53,7 +59,10 @@ def add_movie(movieNameStr=None, length=None, rating=None, load=True, save=True)
 
     if load == True: load_movies()
 
+    print(check_for_movie(movieObj))
+
     #add movie to list of movies
+    # TODO: check to see if movie already exists before adding, and update instead
     movies.append(movieObj)
 
     if save == True: save_movies()
