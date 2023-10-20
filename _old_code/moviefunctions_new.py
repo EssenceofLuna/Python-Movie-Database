@@ -19,6 +19,30 @@ def load_movies(moviesList = movies):
 
 def update_movie(movieName, editName = False, editLength = False, editRating = False):
     movieListCheck = find_movie(movieName)
+    if movieListCheck == None: return None #check to see if movie doesnt exist
+
+    movieNameStr = movies[movieListCheck].get("name")
+    length = movies[movieListCheck].get("length")
+    rating = movies[movieListCheck].get("rating")
+
+    if editName:
+        print("Enter movie name")
+        movieNameStr = input()
+
+    if editLength:
+        print("Enter movie length in seconds")
+        length = input()
+
+    if editRating:
+        print("Enter movie rating, 0-100")
+        rating = input()
+
+    movies[movieListCheck] = {
+        "name": movieNameStr,
+        "length": length,
+        "rating": rating
+    }
+    
 
 def add_movie(movieNameStr=None, length=None, rating=None, forceAppend=False, loadJson = True, saveJson = True):
     # Get movie name if one is not provided
